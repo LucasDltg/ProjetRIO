@@ -78,11 +78,13 @@ int main(int argc, char **argv)
 
     // set up server address
     struct sockaddr_in serveradd;
+    serveradd.sin_family = AF_INET;
     serveradd.sin_port = htons(atoi(argv[4]));
     inet_aton(argv[3], &(serveradd.sin_addr));
     
     int clientsoc;
     struct sockaddr_in clientadd;
+    clientadd.sin_family = AF_INET;
     socklen_t len = sizeof(struct sockaddr_in);
 
     if(listen(soc,1)==-1){perror("error listen\n");exit(1);}
